@@ -1,38 +1,101 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>江口式絕對音感訓練法：原理、實證與執行完全指南</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap"
+        rel="stylesheet">
     <style>
-        body { font-family: 'Noto Sans TC', sans-serif; background-color: #FDFBF7; color: #4A4A4A; }
-        .chart-container { position: relative; width: 100%; max-width: 800px; height: 350px; margin: 0 auto; }
-        .card-shadow { box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03); }
-        .flag-color-red { background-color: #EF4444; }
-        .flag-color-blue { background-color: #3B82F6; }
-        .flag-color-yellow { background-color: #EAB308; }
-        .flag-color-green { background-color: #22C55E; }
-        .flag-color-black { background-color: #1F2937; }
-        .flag-color-white { background-color: #F3F4F6; border: 2px solid #E5E7EB; }
-        .flag-color-orange { background-color: #F97316; }
-        .flag-color-purple { background-color: #A855F7; }
-        .flag-color-pink { background-color: #EC4899; }
-        
-        .interactive-card { transition: all 0.3s ease; }
-        .interactive-card:hover { transform: translateY(-2px); box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); }
-        
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            background-color: #FDFBF7;
+            color: #4A4A4A;
+        }
+
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            height: 350px;
+            margin: 0 auto;
+        }
+
+        .card-shadow {
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+        }
+
+        .flag-color-red {
+            background-color: #EF4444;
+        }
+
+        .flag-color-blue {
+            background-color: #3B82F6;
+        }
+
+        .flag-color-yellow {
+            background-color: #EAB308;
+        }
+
+        .flag-color-green {
+            background-color: #22C55E;
+        }
+
+        .flag-color-black {
+            background-color: #1F2937;
+        }
+
+        .flag-color-white {
+            background-color: #F3F4F6;
+            border: 2px solid #E5E7EB;
+        }
+
+        .flag-color-orange {
+            background-color: #F97316;
+        }
+
+        .flag-color-purple {
+            background-color: #A855F7;
+        }
+
+        .flag-color-pink {
+            background-color: #EC4899;
+        }
+
+        .interactive-card {
+            transition: all 0.3s ease;
+        }
+
+        .interactive-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
         /* Custom scrollbar */
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #f1f1f1; }
-        ::-webkit-scrollbar-thumb { background: #d1d5db; border-radius: 4px; }
-        ::-webkit-scrollbar-thumb:hover { background: #9ca3af; }
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #d1d5db;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #9ca3af;
+        }
     </style>
     <!-- Chosen Palette: Warm Neutral Background (#FDFBF7) with Academic/Soft Accents. -->
     <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
 </head>
+
 <body class="antialiased">
 
     <!-- Navigation -->
@@ -43,10 +106,16 @@
                     <span class="text-xl font-bold text-gray-800 tracking-tight">江口式 Eguchi Method</span>
                 </div>
                 <div class="hidden sm:flex space-x-8">
-                    <button onclick="scrollToSection('theory')" class="text-gray-600 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">核心原理</button>
-                    <button onclick="scrollToSection('process')" class="text-gray-600 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">執行步驟</button>
-                    <button onclick="scrollToSection('simulation')" class="text-gray-600 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">訓練模擬</button>
-                    <button onclick="scrollToSection('faq')" class="text-gray-600 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">常見問題</button>
+                    <button onclick="scrollToSection('theory')"
+                        class="text-gray-600 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">核心原理</button>
+                    <button onclick="scrollToSection('process')"
+                        class="text-gray-600 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">執行步驟</button>
+                    <button onclick="scrollToSection('simulation')"
+                        class="text-gray-600 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">訓練模擬</button>
+                    <button onclick="scrollToSection('tools')"
+                        class="text-gray-600 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">訓練工具</button>
+                    <button onclick="scrollToSection('faq')"
+                        class="text-gray-600 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">常見問題</button>
                 </div>
             </div>
         </div>
@@ -62,18 +131,21 @@
                             <span class="block xl:inline">掌握江口式</span>
                             <span class="block text-blue-600 xl:inline">絕對音感訓練法</span>
                         </h1>
-                        <p class="mt-3 text-base text-gray-500 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-auto">
+                        <p
+                            class="mt-3 text-base text-gray-500 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-auto">
                             一項基於兒童大腦發展臨界期的科學訓練系統。透過「和弦色彩」的辨識，在無壓力的環境下，為孩子開啟通往絕對音感的大門。
                         </p>
                         <div class="mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-start gap-4">
                             <div class="rounded-md shadow">
-                                <button onclick="scrollToSection('theory')" class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 md:py-4 md:text-lg transition-all">
+                                <button onclick="scrollToSection('theory')"
+                                    class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 md:py-4 md:text-lg transition-all">
                                     開始探索
                                 </button>
                             </div>
                             <!-- UPDATED Button: Links to report.html -->
                             <div class="rounded-md shadow">
-                                <a href="report.html" target="_blank" class="w-full flex items-center justify-center px-8 py-3 border border-gray-300 text-base font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 md:py-4 md:text-lg transition-all text-center no-underline">
+                                <a href="report.html" target="_blank"
+                                    class="w-full flex items-center justify-center px-8 py-3 border border-gray-300 text-base font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 md:py-4 md:text-lg transition-all text-center no-underline">
                                     深入原理介紹
                                 </a>
                             </div>
@@ -154,26 +226,31 @@
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
                 <!-- Left: Interactive List -->
                 <div class="lg:col-span-4 space-y-4">
-                    <button onclick="updateProcess(0)" id="step-btn-0" class="w-full text-left p-4 rounded-lg border-2 border-blue-600 bg-blue-50 transition-all flex items-center justify-between">
+                    <button onclick="updateProcess(0)" id="step-btn-0"
+                        class="w-full text-left p-4 rounded-lg border-2 border-blue-600 bg-blue-50 transition-all flex items-center justify-between">
                         <span class="font-bold text-blue-900">第一階段：認識C大調</span>
                         <span class="text-2xl">🚩</span>
                     </button>
-                    <button onclick="updateProcess(1)" id="step-btn-1" class="w-full text-left p-4 rounded-lg border-2 border-gray-100 hover:bg-gray-50 transition-all flex items-center justify-between">
+                    <button onclick="updateProcess(1)" id="step-btn-1"
+                        class="w-full text-left p-4 rounded-lg border-2 border-gray-100 hover:bg-gray-50 transition-all flex items-center justify-between">
                         <span class="font-bold text-gray-700">第二階段：加入G/F大調</span>
                         <span class="text-2xl">🎹</span>
                     </button>
-                    <button onclick="updateProcess(2)" id="step-btn-2" class="w-full text-left p-4 rounded-lg border-2 border-gray-100 hover:bg-gray-50 transition-all flex items-center justify-between">
+                    <button onclick="updateProcess(2)" id="step-btn-2"
+                        class="w-full text-left p-4 rounded-lg border-2 border-gray-100 hover:bg-gray-50 transition-all flex items-center justify-between">
                         <span class="font-bold text-gray-700">第三階段：擴展至黑鍵</span>
                         <span class="text-2xl">🌈</span>
                     </button>
-                    <button onclick="updateProcess(3)" id="step-btn-3" class="w-full text-left p-4 rounded-lg border-2 border-gray-100 hover:bg-gray-50 transition-all flex items-center justify-between">
+                    <button onclick="updateProcess(3)" id="step-btn-3"
+                        class="w-full text-left p-4 rounded-lg border-2 border-gray-100 hover:bg-gray-50 transition-all flex items-center justify-between">
                         <span class="font-bold text-gray-700">第四階段：單音分化</span>
                         <span class="text-2xl">🎵</span>
                     </button>
                 </div>
 
                 <!-- Right: Content Display -->
-                <div class="lg:col-span-8 bg-white border border-gray-200 rounded-xl p-8 card-shadow relative min-h-[400px]">
+                <div
+                    class="lg:col-span-8 bg-white border border-gray-200 rounded-xl p-8 card-shadow relative min-h-[400px]">
                     <div id="process-content">
                         <!-- Content will be injected by JS -->
                     </div>
@@ -199,17 +276,20 @@
                     <div class="bg-gray-800 p-6 rounded-lg border border-gray-700">
                         <h4 class="text-lg font-bold mb-4 text-gray-200">家長操作區 (彈奏與提問)</h4>
                         <div class="grid grid-cols-3 gap-4">
-                            <button onclick="playChord('C')" class="p-4 bg-gray-700 hover:bg-gray-600 rounded-lg text-center transition-colors group">
+                            <button onclick="playChord('C')"
+                                class="p-4 bg-gray-700 hover:bg-gray-600 rounded-lg text-center transition-colors group">
                                 <div class="text-2xl mb-1">🎹</div>
                                 <div class="font-bold text-white">C Major</div>
                                 <div class="text-xs text-gray-400 group-hover:text-white">Do-Mi-Sol</div>
                             </button>
-                            <button onclick="playChord('G')" class="p-4 bg-gray-700 hover:bg-gray-600 rounded-lg text-center transition-colors group">
+                            <button onclick="playChord('G')"
+                                class="p-4 bg-gray-700 hover:bg-gray-600 rounded-lg text-center transition-colors group">
                                 <div class="text-2xl mb-1">🎹</div>
                                 <div class="font-bold text-white">G Major</div>
                                 <div class="text-xs text-gray-400 group-hover:text-white">Sol-Si-Re</div>
                             </button>
-                            <button onclick="playChord('F')" class="p-4 bg-gray-700 hover:bg-gray-600 rounded-lg text-center transition-colors group">
+                            <button onclick="playChord('F')"
+                                class="p-4 bg-gray-700 hover:bg-gray-600 rounded-lg text-center transition-colors group">
                                 <div class="text-2xl mb-1">🎹</div>
                                 <div class="font-bold text-white">F Major</div>
                                 <div class="text-xs text-gray-400 group-hover:text-white">Fa-La-Do</div>
@@ -240,17 +320,86 @@
                 </div>
 
                 <!-- Visual Feedback -->
-                <div class="flex flex-col items-center justify-center h-full min-h-[300px] bg-gray-800 rounded-xl border border-gray-700 relative overflow-hidden">
-                    <div id="flag-display" class="w-48 h-48 rounded-full flex items-center justify-center transition-all duration-500 transform scale-0 bg-gray-600">
+                <div
+                    class="flex flex-col items-center justify-center h-full min-h-[300px] bg-gray-800 rounded-xl border border-gray-700 relative overflow-hidden">
+                    <div id="flag-display"
+                        class="w-48 h-48 rounded-full flex items-center justify-center transition-all duration-500 transform scale-0 bg-gray-600">
                         <!-- Flag content -->
                     </div>
                     <div id="feedback-text" class="mt-8 text-xl font-bold text-gray-300 text-center px-6">
                         準備開始...請點擊左側和弦
                     </div>
-                    
+
                     <!-- Decor elements -->
                     <div class="absolute top-4 right-4 text-gray-600 text-6xl opacity-20 select-none">♪</div>
                     <div class="absolute bottom-4 left-4 text-gray-600 text-6xl opacity-20 select-none">♫</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section: Practice Tools -->
+    <section id="tools" class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-extrabold text-gray-900">實用訓練工具</h2>
+                <p class="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
+                    為了協助家長更輕鬆地執行江口式訓練，我們提供以下互動式練習工具。
+                </p>
+            </div>
+
+            <div class="max-w-4xl mx-auto">
+                <!-- CFG Practice Tool Card -->
+                <div
+                    class="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl p-8 card-shadow interactive-card border-2 border-blue-200">
+                    <div class="flex items-start gap-6">
+                        <div class="flex-shrink-0">
+                            <div
+                                class="w-16 h-16 bg-blue-600 rounded-xl flex items-center justify-center text-white text-3xl shadow-lg">
+                                🎹
+                            </div>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="text-2xl font-bold text-gray-900 mb-3">C、F、G 和弦練習工具</h3>
+                            <p class="text-gray-700 mb-4 leading-relaxed">
+                                這是專為<strong>一歲寶寶設計的第一階段練習工具</strong>，協助孩子熟悉 C、F、G 三個基本大調和弦。
+                                透過互動式介面，寶寶可以在遊戲中建立和弦與色彩的連結，為後續的絕對音感訓練打下穩固基礎。
+                            </p>
+
+                            <div class="bg-white rounded-lg p-4 mb-4 border border-blue-100">
+                                <h4 class="font-bold text-gray-800 mb-2 flex items-center">
+                                    <span class="text-blue-600 mr-2">✓</span>
+                                    適用對象與階段
+                                </h4>
+                                <ul class="text-sm text-gray-600 space-y-1 ml-6">
+                                    <li>• 年齡：1-3 歲幼兒</li>
+                                    <li>• 階段：第一階段 - 三和弦辨識</li>
+                                    <li>• 目標：建立 C、F、G 和弦的初步音感</li>
+                                </ul>
+                            </div>
+
+                            <div class="bg-yellow-50 rounded-lg p-4 mb-6 border border-yellow-200">
+                                <p class="text-sm text-yellow-800">
+                                    <strong>💡 使用提示：</strong>
+                                    每次練習 1-2 分鐘即可，每天進行 4-5 次。記得給予孩子充分的鼓勵和正面回饋！
+                                </p>
+                            </div>
+
+                            <a href="https://share.bricks.tools/app/694d460a852b3551042dca2a" target="_blank"
+                                rel="noopener noreferrer"
+                                class="inline-flex items-center px-6 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-all shadow-md hover:shadow-lg transform hover:-translate-y-0.5">
+                                開始練習
+                                <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+                                </svg>
+                            </a>
+
+                            <p class="mt-3 text-xs text-gray-500">
+                                工具製作平台：BRICKS Tools
+                            </p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -260,7 +409,7 @@
     <section id="faq" class="py-16 bg-gray-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
-                
+
                 <!-- Training Volume Chart -->
                 <div>
                     <h3 class="text-2xl font-bold text-gray-900 mb-6">訓練時間分配建議</h3>
@@ -276,7 +425,8 @@
                     <div class="space-y-4">
                         <div class="flex items-start bg-green-50 p-4 rounded-lg">
                             <div class="flex-shrink-0">
-                                <span class="flex items-center justify-center h-8 w-8 rounded-full bg-green-200 text-green-700 font-bold">O</span>
+                                <span
+                                    class="flex items-center justify-center h-8 w-8 rounded-full bg-green-200 text-green-700 font-bold">O</span>
                             </div>
                             <div class="ml-4">
                                 <h4 class="text-lg font-medium text-green-900">持之以恆</h4>
@@ -286,7 +436,8 @@
 
                         <div class="flex items-start bg-green-50 p-4 rounded-lg">
                             <div class="flex-shrink-0">
-                                <span class="flex items-center justify-center h-8 w-8 rounded-full bg-green-200 text-green-700 font-bold">O</span>
+                                <span
+                                    class="flex items-center justify-center h-8 w-8 rounded-full bg-green-200 text-green-700 font-bold">O</span>
                             </div>
                             <div class="ml-4">
                                 <h4 class="text-lg font-medium text-green-900">使用固定樂器</h4>
@@ -296,7 +447,8 @@
 
                         <div class="flex items-start bg-red-50 p-4 rounded-lg">
                             <div class="flex-shrink-0">
-                                <span class="flex items-center justify-center h-8 w-8 rounded-full bg-red-200 text-red-700 font-bold">X</span>
+                                <span
+                                    class="flex items-center justify-center h-8 w-8 rounded-full bg-red-200 text-red-700 font-bold">X</span>
                             </div>
                             <div class="ml-4">
                                 <h4 class="text-lg font-medium text-red-900">嚴厲指正</h4>
@@ -306,7 +458,8 @@
 
                         <div class="flex items-start bg-red-50 p-4 rounded-lg">
                             <div class="flex-shrink-0">
-                                <span class="flex items-center justify-center h-8 w-8 rounded-full bg-red-200 text-red-700 font-bold">X</span>
+                                <span
+                                    class="flex items-center justify-center h-8 w-8 rounded-full bg-red-200 text-red-700 font-bold">X</span>
                             </div>
                             <div class="ml-4">
                                 <h4 class="text-lg font-medium text-red-900">操之過急</h4>
@@ -437,7 +590,7 @@
 
         function updateProcess(index) {
             currentStep = index;
-            
+
             // Update buttons styling
             for (let i = 0; i < 4; i++) {
                 const btn = document.getElementById(`step-btn-${i}`);
@@ -453,7 +606,7 @@
             // Update Content
             const contentDiv = document.getElementById('process-content');
             contentDiv.innerHTML = processSteps[index].content;
-            
+
             // Add subtle animation
             contentDiv.classList.remove('opacity-100');
             contentDiv.classList.add('opacity-0');
@@ -466,12 +619,12 @@
         function playChord(chord) {
             const display = document.getElementById('flag-display');
             const feedback = document.getElementById('feedback-text');
-            
+
             let colorClass = '';
             let text = '';
             let notes = '';
 
-            switch(chord) {
+            switch (chord) {
                 case 'C':
                     colorClass = 'flag-color-red';
                     text = 'C Major - 紅色旗子';
@@ -491,7 +644,7 @@
 
             // Reset animation
             display.className = "w-48 h-48 rounded-full flex flex-col items-center justify-center transition-all duration-500 transform scale-0 " + colorClass;
-            
+
             // Trigger animation
             setTimeout(() => {
                 display.classList.remove('scale-0');
@@ -500,7 +653,7 @@
                     <span class="text-4xl filter drop-shadow-md">🚩</span>
                     <span class="text-white font-bold mt-2 filter drop-shadow-md text-lg">${chord}</span>
                 `;
-                
+
                 feedback.innerHTML = `
                     <div class="animate-pulse">
                         <span class="block text-2xl text-white mb-1">${text}</span>
@@ -540,7 +693,7 @@
                         legend: { display: false },
                         tooltip: {
                             callbacks: {
-                                label: function(context) {
+                                label: function (context) {
                                     return `成功率: ${context.raw}% (臨界期效應)`;
                                 }
                             }
@@ -592,4 +745,5 @@
         });
     </script>
 </body>
+
 </html>
