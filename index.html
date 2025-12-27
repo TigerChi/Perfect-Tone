@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>江口式絕對音感訓練法：原理、實證與執行完全指南</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Noto Sans TC', sans-serif; background-color: #FDFBF7; color: #4A4A4A; }
+        .chart-container { position: relative; width: 100%; max-width: 800px; height: 350px; margin: 0 auto; }
+        .card-shadow { box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03); }
+        .flag-color-red { background-color: #EF4444; }
+        .flag-color-blue { background-color: #3B82F6; }
+        .flag-color-yellow { background-color: #EAB308; }
+        .flag-color-green { background-color: #22C55E; }
+        .flag-color-black { background-color: #1F2937; }
+        .flag-color-white { background-color: #F3F4F6; border: 2px solid #E5E7EB; }
+        .flag-color-orange { background-color: #F97316; }
+        .flag-color-purple { background-color: #A855F7; }
+        .flag-color-pink { background-color: #EC4899; }
+        
+        .interactive-card { transition: all 0.3s ease; }
+        .interactive-card:hover { transform: translateY(-2px); box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); }
+        
+        /* Modal Transitions */
+        .modal { transition: opacity 0.25s ease; }
+        body.modal-active { overflow: hidden; }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        ::-webkit-scrollbar-thumb { background: #d1d5db; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #9ca3af; }
+    </style>
+    <!-- Chosen Palette: Warm Neutral Background (#FDFBF7) with Academic/Soft Accents. -->
+    
+    <!-- Application Structure Plan: 
+         Updated with a "Deep Dive" Modal functionality to house extensive theoretical content without cluttering the main landing page flow.
+    -->
+
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+</head>
+<body class="antialiased">
+
+    <!-- Navigation -->
+    <nav class="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <div class="flex-shrink-0 flex items-center cursor-pointer" onclick="window.scrollTo(0,0)">
+                    <span class="text-xl font-bold text-gray-800 tracking-tight">江口式 Eguchi Method</span>
+                </div>
+                <div class="hidden sm:flex space-x-8">
+                    <button onclick="scrollToSection('theory')" class="text-gray-600 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">核心原理</button>
+                    <button onclick="scrollToSection('process')" class="text-gray-600 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">執行步驟</button>
+                    <button onclick="scrollToSection('simulation')" class="text-gray-600 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">訓練模擬</button>
+                    <button onclick="scrollToSection('faq')" class="text-gray-600 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">常見問題</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="relative bg-white overflow-hidden">
+        <div class="max-w-7xl mx-auto">
+            <div class="relative z-10 pb-8 bg-white sm:pb-16 md:pb-20 lg:max-w-2xl lg:w-full lg:pb-28 xl:pb-32">
+                <main class="mt-10 mx-auto max-w-7xl px-4 sm:mt-12 sm:px-6 md:mt-16 lg:mt-20 lg:px-8 xl:mt-28">
+                    <div class="sm:text-center lg:text-left">
+                        <h1 class="text-4xl tracking-tight font-extrabold text-gray-900 sm:text-5xl md:text-6xl">
+                            <span class="block xl:inline">掌握江口式</span>
+                            <span class="block text-blue-600 xl:inline">絕對音感訓練法</span>
+                        </h1>
+                        <p class="mt-3 text-base text-gray-500 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-auto">
+                            一項基於兒童大腦發展臨界期的科學訓練系統。透過「和弦色彩」的辨識，在無壓力的環境下，為孩子開啟通往絕對音感的大門。
+                        </p>
+                        <div class="mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-start gap-4">
+                            <div class="rounded-md shadow">
+                                <button onclick="scrollToSection('theory')" class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 md:py-4 md:text-lg transition-all">
+                                    開始探索
+                                </button>
+                            </div>
+                            <!-- Added Button -->
+                            <div class="rounded-md shadow">
+                                <button onclick="toggleModal('deepDiveModal')" class="w-full flex items-center justify-center px-8 py-3 border border-gray-300 text-base font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 md:py-4 md:text-lg transition-all">
+                                    深入原理
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+            </div>
+        </div>
+        <div class="lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2 bg-blue-50 flex items-center justify-center p-8">
+            <div class="w-full max-w-md bg-white rounded-xl shadow-lg p-6">
+                <h3 class="text-lg font-bold text-gray-800 mb-4 text-center">為什麼要在6歲前開始？</h3>
+                <div class="chart-container" style="height: 300px;">
+                    <canvas id="ageSuccessChart"></canvas>
+                </div>
+                <p class="text-xs text-gray-400 text-center mt-2">數據來源：江口式訓練統計趨勢示意</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Section: Theory & Principles -->
+    <section id="theory" class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-extrabold text-gray-900">核心原理與邏輯</h2>
+                <p class="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
+                    江口式訓練法與傳統音樂教育不同，它強調在大腦聽覺神經發育的關鍵期，建立聲音與標籤的直接連結。
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div class="bg-white rounded-lg p-6 card-shadow interactive-card border-t-4 border-blue-500">
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">1. 先和弦，後單音</h3>
+                    <p class="text-gray-600 mb-4">
+                        幼兒對「單音」的辨識較弱，但對「和弦」所產生的獨特音響色彩（Tone Color）非常敏感。江口式主張先訓練辨識C大調、G大調等和弦，建立穩固基礎後再拆解為單音。
+                    </p>
+                    <div class="mt-auto bg-blue-50 p-3 rounded text-sm text-blue-800">
+                        <strong>關鍵：</strong>就像先認出「媽媽的臉」，再分辨眼睛和鼻子。
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="bg-white rounded-lg p-6 card-shadow interactive-card border-t-4 border-red-500">
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">2. 臨界期理論</h3>
+                    <p class="text-gray-600 mb-4">
+                        絕對音感的習得是「能力」而非「知識」。這種能力只能在聽覺神經發育完成前（約6-7歲）建立。過了這個時期，大腦將轉向「相對音感」的邏輯運作，幾乎無法再獲得真正的絕對音感。
+                    </p>
+                    <div class="mt-auto bg-red-50 p-3 rounded text-sm text-red-800">
+                        <strong>警告：</strong>3-5歲是黃金期，6歲後成功率呈斷崖式下跌。
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="bg-white rounded-lg p-6 card-shadow interactive-card border-t-4 border-yellow-500">
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">3. 短時高頻與讚美</h3>
+                    <p class="text-gray-600 mb-4">
+                        訓練必須像「遊戲」而非「上課」。每次僅需1-2分鐘，但每天需進行5次以上。嚴禁責罵或糾正錯誤，以免孩子產生壓力而關閉聽覺通道。
+                    </p>
+                    <div class="mt-auto bg-yellow-50 p-3 rounded text-sm text-yellow-800">
+                        <strong>心法：</strong>輸入（聽）大於輸出（猜），答錯時溫柔提示正確答案即可。
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section: The Process (Interactive Steps) -->
+    <section id="process" class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mb-12">
+                <h2 class="text-3xl font-extrabold text-gray-900">詳細執行步驟：三色旗的魔法</h2>
+                <p class="mt-4 text-lg text-gray-600">
+                    江口式訓練最經典的執行方式是利用「顏色」作為聲音的標籤。
+                    <span class="text-sm bg-gray-100 px-2 py-1 rounded ml-2">點擊下方步驟查看詳情</span>
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                <!-- Left: Interactive List -->
+                <div class="lg:col-span-4 space-y-4">
+                    <button onclick="updateProcess(0)" id="step-btn-0" class="w-full text-left p-4 rounded-lg border-2 border-blue-600 bg-blue-50 transition-all flex items-center justify-between">
+                        <span class="font-bold text-blue-900">第一階段：認識C大調</span>
+                        <span class="text-2xl">🚩</span>
+                    </button>
+                    <button onclick="updateProcess(1)" id="step-btn-1" class="w-full text-left p-4 rounded-lg border-2 border-gray-100 hover:bg-gray-50 transition-all flex items-center justify-between">
+                        <span class="font-bold text-gray-700">第二階段：加入G/F大調</span>
+                        <span class="text-2xl">🎹</span>
+                    </button>
+                    <button onclick="updateProcess(2)" id="step-btn-2" class="w-full text-left p-4 rounded-lg border-2 border-gray-100 hover:bg-gray-50 transition-all flex items-center justify-between">
+                        <span class="font-bold text-gray-700">第三階段：擴展至黑鍵</span>
+                        <span class="text-2xl">🌈</span>
+                    </button>
+                    <button onclick="updateProcess(3)" id="step-btn-3" class="w-full text-left p-4 rounded-lg border-2 border-gray-100 hover:bg-gray-50 transition-all flex items-center justify-between">
+                        <span class="font-bold text-gray-700">第四階段：單音分化</span>
+                        <span class="text-2xl">🎵</span>
+                    </button>
+                </div>
+
+                <!-- Right: Content Display -->
+                <div class="lg:col-span-8 bg-white border border-gray-200 rounded-xl p-8 card-shadow relative min-h-[400px]">
+                    <div id="process-content">
+                        <!-- Content will be injected by JS -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section: Simulation (Training Demo) -->
+    <section id="simulation" class="py-16 bg-gray-900 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-10">
+                <h2 class="text-3xl font-extrabold text-white">訓練情境模擬</h2>
+                <p class="mt-4 text-gray-300">
+                    請想像您正在與孩子進行訓練。點擊下方的和弦按鈕，觀察標準的對應反應。
+                    <br>實際操作時，請使用鋼琴或電子琴彈奏真實的和弦。
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <!-- Controls -->
+                <div class="space-y-6">
+                    <div class="bg-gray-800 p-6 rounded-lg border border-gray-700">
+                        <h4 class="text-lg font-bold mb-4 text-gray-200">家長操作區 (彈奏與提問)</h4>
+                        <div class="grid grid-cols-3 gap-4">
+                            <button onclick="playChord('C')" class="p-4 bg-gray-700 hover:bg-gray-600 rounded-lg text-center transition-colors group">
+                                <div class="text-2xl mb-1">🎹</div>
+                                <div class="font-bold text-white">C Major</div>
+                                <div class="text-xs text-gray-400 group-hover:text-white">Do-Mi-Sol</div>
+                            </button>
+                            <button onclick="playChord('G')" class="p-4 bg-gray-700 hover:bg-gray-600 rounded-lg text-center transition-colors group">
+                                <div class="text-2xl mb-1">🎹</div>
+                                <div class="font-bold text-white">G Major</div>
+                                <div class="text-xs text-gray-400 group-hover:text-white">Sol-Si-Re</div>
+                            </button>
+                            <button onclick="playChord('F')" class="p-4 bg-gray-700 hover:bg-gray-600 rounded-lg text-center transition-colors group">
+                                <div class="text-2xl mb-1">🎹</div>
+                                <div class="font-bold text-white">F Major</div>
+                                <div class="text-xs text-gray-400 group-hover:text-white">Fa-La-Do</div>
+                            </button>
+                        </div>
+                        <p class="mt-4 text-sm text-gray-400">
+                            提示：按下按鈕模擬彈奏和弦。
+                        </p>
+                    </div>
+
+                    <div class="bg-gray-800 p-6 rounded-lg border border-gray-700">
+                        <h4 class="text-lg font-bold mb-4 text-gray-200">教學重點提示</h4>
+                        <ul class="space-y-3 text-sm text-gray-300">
+                            <li class="flex items-start">
+                                <span class="text-green-400 mr-2">✓</span>
+                                彈奏時聲音要清晰，不要參雜雜音。
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-green-400 mr-2">✓</span>
+                                如果孩子猶豫超過2秒，立即給出提示（舉起正確的旗子）。
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-green-400 mr-2">✓</span>
+                                無論對錯，最後都要給予正面的情緒回饋。
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Visual Feedback -->
+                <div class="flex flex-col items-center justify-center h-full min-h-[300px] bg-gray-800 rounded-xl border border-gray-700 relative overflow-hidden">
+                    <div id="flag-display" class="w-48 h-48 rounded-full flex items-center justify-center transition-all duration-500 transform scale-0 bg-gray-600">
+                        <!-- Flag content -->
+                    </div>
+                    <div id="feedback-text" class="mt-8 text-xl font-bold text-gray-300 text-center px-6">
+                        準備開始...請點擊左側和弦
+                    </div>
+                    
+                    <!-- Decor elements -->
+                    <div class="absolute top-4 right-4 text-gray-600 text-6xl opacity-20 select-none">♪</div>
+                    <div class="absolute bottom-4 left-4 text-gray-600 text-6xl opacity-20 select-none">♫</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section: Data & FAQ -->
+    <section id="faq" class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                
+                <!-- Training Volume Chart -->
+                <div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-6">訓練時間分配建議</h3>
+                    <p class="mb-4 text-gray-600">許多家長誤以為訓練就是不斷的「考試」（讓孩子猜音）。但江口式強調「輸入」的重要性。初期應以讓孩子聆聽並告知答案為主。</p>
+                    <div class="bg-white p-6 rounded-lg shadow-sm chart-container">
+                        <canvas id="trainingVolumeChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- FAQ Checklist -->
+                <div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-6">成功執行的關鍵 (Do's & Don'ts)</h3>
+                    <div class="space-y-4">
+                        <div class="flex items-start bg-green-50 p-4 rounded-lg">
+                            <div class="flex-shrink-0">
+                                <span class="flex items-center justify-center h-8 w-8 rounded-full bg-green-200 text-green-700 font-bold">O</span>
+                            </div>
+                            <div class="ml-4">
+                                <h4 class="text-lg font-medium text-green-900">持之以恆</h4>
+                                <p class="text-green-700 text-sm">每天至少4-5次，每次1-2分鐘。總時數不重要，頻率才是關鍵。</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start bg-green-50 p-4 rounded-lg">
+                            <div class="flex-shrink-0">
+                                <span class="flex items-center justify-center h-8 w-8 rounded-full bg-green-200 text-green-700 font-bold">O</span>
+                            </div>
+                            <div class="ml-4">
+                                <h4 class="text-lg font-medium text-green-900">使用固定樂器</h4>
+                                <p class="text-green-700 text-sm">最好是傳統鋼琴，或是音準極佳的電子琴。不要頻繁更換音色。</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start bg-red-50 p-4 rounded-lg">
+                            <div class="flex-shrink-0">
+                                <span class="flex items-center justify-center h-8 w-8 rounded-full bg-red-200 text-red-700 font-bold">X</span>
+                            </div>
+                            <div class="ml-4">
+                                <h4 class="text-lg font-medium text-red-900">嚴厲指正</h4>
+                                <p class="text-red-700 text-sm">絕對不要說「你錯了！」。如果孩子答錯，只需平靜地說「這是紅色的旗子喔」並展示正確答案。</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start bg-red-50 p-4 rounded-lg">
+                            <div class="flex-shrink-0">
+                                <span class="flex items-center justify-center h-8 w-8 rounded-full bg-red-200 text-red-700 font-bold">X</span>
+                            </div>
+                            <div class="ml-4">
+                                <h4 class="text-lg font-medium text-red-900">操之過急</h4>
+                                <p class="text-red-700 text-sm">在C大調未達100%正確率前，絕對不要加入新的和弦。基礎不穩會導致混亂。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Deep Dive Modal -->
+    <div id="deepDiveModal" class="modal opacity-0 pointer-events-none fixed w-full h-full top-0 left-0 flex items-center justify-center z-50">
+        <div class="modal-overlay absolute w-full h-full bg-gray-900 opacity-50" onclick="toggleModal('deepDiveModal')"></div>
+        
+        <div class="modal-container bg-white w-11/12 md:max-w-3xl mx-auto rounded shadow-lg z-50 overflow-y-auto max-h-[90vh]">
+            
+            <div class="modal-content py-4 text-left px-6">
+                <!-- Title -->
+                <div class="flex justify-between items-center pb-3 border-b border-gray-200">
+                    <p class="text-2xl font-bold text-gray-800">深入解析：江口式絕對音感訓練的科學原理</p>
+                    <div class="modal-close cursor-pointer z-50 p-2" onclick="toggleModal('deepDiveModal')">
+                        <svg class="fill-current text-gray-500 hover:text-gray-900" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">
+                            <path d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"></path>
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- Body (The Deep Dive Content) -->
+                <div class="my-5 space-y-6 text-gray-700 leading-relaxed">
+                    
+                    <section>
+                        <h4 class="text-xl font-bold text-blue-800 mb-2">1. 絕對音感的本質：一種「語言」能力</h4>
+                        <p class="mb-2">許多人誤以為絕對音感是聽覺的敏銳度，但科學上，它更接近一種「記憶」與「語言標籤」的連結能力。</p>
+                        <ul class="list-disc pl-5 space-y-1 bg-blue-50 p-4 rounded-lg">
+                            <li><strong>相對音感 (Relative Pitch):</strong> 比較兩個音的高低關係（大腦運作：分析、計算）。這是音樂家的必備技能，任何年齡皆可訓練。</li>
+                            <li><strong>絕對音感 (Absolute Pitch):</strong> 對單一頻率的直接指認（大腦運作：模式識別、命名）。這類似於我們看到紅色就能說出「紅色」，而不需要拿藍色來比較。</li>
+                        </ul>
+                        <p class="mt-2 text-sm italic">研究顯示，絕對音感擁有者在辨識音高時，大腦的「左側顳葉平面 (Planum Temporale)」——即負責語言處理的區域——有顯著的活化。這證明了絕對音感本質上是將「聲音頻率」編碼為「語言符號」的過程。</p>
+                    </section>
+
+                    <section>
+                        <h4 class="text-xl font-bold text-red-700 mb-2">2. 為什麼要在6歲前？——關鍵期假說 (Critical Period)</h4>
+                        <p>江口式訓練最強調的是「時機」。</p>
+                        <ul class="list-disc pl-5 mt-2 space-y-2">
+                            <li><strong>髓鞘化 (Myelination):</strong> 人類大腦的聽覺神經迴路在6-7歲左右完成髓鞘化（絕緣包覆）。在此之前，大腦具有極高的可塑性，能夠建立「聲音-符號」的直接高速公路。</li>
+                            <li><strong>知覺策略的轉變:</strong> 3-5歲的兒童傾向於關注聲音的「音色 (Chroma)」，這是絕對音感的基礎。然而，8歲後的兒童與成人，大腦會轉向以「音高 (Height)」和「邏輯關係」為主的認知策略。一旦大腦習慣了「比較法」（相對音感），就很難再退回去建立直覺的絕對音感路徑。</li>
+                        </ul>
+                        <p class="mt-2 font-semibold">江口壽子的數據顯示：3歲開始訓練，成功率接近100%；6歲開始，成功率降至40%以下；9歲以後幾乎為0%。</p>
+                    </section>
+
+                    <section>
+                        <h4 class="text-xl font-bold text-gray-800 mb-2">3. 核心方法論：和弦辨識法 (CIM - Chord Identification Method)</h4>
+                        <p>為什麼不練單音，要練和弦？</p>
+                        <div class="grid md:grid-cols-2 gap-4 mt-2">
+                            <div class="border p-3 rounded bg-gray-50">
+                                <strong class="block text-gray-900 mb-1">格式塔心理學 (Gestalt)</strong>
+                                幼兒的認知發展是「從整體到局部」。對於聽覺系統尚未完全發育的孩子來說，單音（如單獨的Do）過於抽象且單薄，很難留下深刻印象。
+                            </div>
+                            <div class="border p-3 rounded bg-gray-50">
+                                <strong class="block text-gray-900 mb-1">聲音的「顏色」</strong>
+                                和弦（如C大調 Do-Mi-Sol）具有豐富的泛音結構，產生獨特的「音響色彩」。江口式利用這種色彩感，讓孩子像分辨「紅旗、藍旗」一樣分辨「C和弦、G和弦」。
+                            </div>
+                        </div>
+                        <p class="mt-3"><strong>脫離相對音感陷阱：</strong>如果一開始就教單音，孩子很容易不自覺地去比較（唱 Do Re Mi...），這會訓練成相對音感。直接聽和弦，孩子無法唱出三個音，只能被迫去記憶整體的「色彩」，從而逼出絕對音感的能力。</p>
+                    </section>
+
+                    <section>
+                        <h4 class="text-xl font-bold text-gray-800 mb-2">4. 訓練的生理機制：輸入大於輸出</h4>
+                        <p>江口式強調「不考試」、「不糾正」。</p>
+                        <p class="mt-2">從神經科學角度看，建立突觸連結需要大量的「正確訊號刺激」。當家長彈奏C和弦並說是「紅色」時，這是有效的訊號輸入。反之，當孩子猜錯而被糾正時，大腦會產生壓力荷爾蒙（Cortisol），這會抑制海馬迴的學習功能。因此，江口式主張「只給正確答案」，讓大腦在無壓力下進行模式匹配。</p>
+                    </section>
+
+                </div>
+
+                <!-- Footer -->
+                <div class="flex justify-end pt-2 pb-4 border-t border-gray-200">
+                    <button class="px-4 py-2 bg-blue-600 p-3 rounded-lg text-white hover:bg-blue-700 transition-colors" onclick="toggleModal('deepDiveModal')">關閉 (Close)</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-gray-200 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p class="text-gray-500 text-sm">
+                本頁面旨在整理江口式訓練法的核心概念與執行流程，僅供教育參考。<br>
+                實際訓練成效因個體差異與執行確實度而異。
+            </p>
+            <p class="mt-4 text-gray-400 text-xs">
+                Reference: Eguchi Method for Absolute Pitch Training
+            </p>
+        </div>
+    </footer>
+
+    <!-- JavaScript Logic -->
+    <script>
+        // Modal Logic
+        function toggleModal(modalID) {
+            const modal = document.getElementById(modalID);
+            const body = document.querySelector('body');
+            
+            modal.classList.toggle('opacity-0');
+            modal.classList.toggle('pointer-events-none');
+            body.classList.toggle('modal-active');
+        }
+
+        document.onkeydown = function(evt) {
+            evt = evt || window.event;
+            if (evt.keyCode == 27) { // Esc key
+                const modal = document.getElementById('deepDiveModal');
+                if (!modal.classList.contains('opacity-0')) {
+                    toggleModal('deepDiveModal');
+                }
+            }
+        };
+
+        // Data for Process Section
+        const processSteps = [
+            {
+                title: "第一階段：建立基準 (C大調)",
+                icon: "🚩",
+                colorClass: "bg-red-500",
+                content: `
+                    <div class="space-y-4">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 rounded-full bg-red-500 flex-shrink-0 flex items-center justify-center text-white font-bold mr-4">C</div>
+                            <h3 class="text-xl font-bold text-gray-800">紅色旗子 = C大調和弦 (Do Mi Sol)</h3>
+                        </div>
+                        <p class="text-gray-600">這是訓練的起點。準備一面紅色的旗子（或卡片）。</p>
+                        <ul class="list-disc pl-5 text-gray-600 space-y-2">
+                            <li><strong>操作：</strong>家長彈奏C大調和弦，同時舉起紅旗說「這是紅色的旗子」。</li>
+                            <li><strong>模仿：</strong>讓孩子跟著舉起紅旗。</li>
+                            <li><strong>初期目標：</strong>讓孩子建立「C大調和弦的聲音」=「紅色」的連結，而不是去分析裡面的音符。</li>
+                            <li><strong>通過標準：</strong>孩子能毫不猶豫地在聽到和弦後舉起紅旗，持續一週無誤。</li>
+                        </ul>
+                    </div>
+                `
+            },
+            {
+                title: "第二階段：對比訓練 (加入G/F)",
+                icon: "🎹",
+                colorClass: "bg-blue-500",
+                content: `
+                    <div class="space-y-4">
+                        <div class="flex gap-4 mb-4">
+                            <div class="flex items-center">
+                                <div class="w-8 h-8 rounded-full bg-red-500 mr-2"></div>
+                                <span class="font-bold">C (紅)</span>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="w-8 h-8 rounded-full bg-yellow-400 mr-2"></div>
+                                <span class="font-bold">F (黃)</span>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="w-8 h-8 rounded-full bg-blue-500 mr-2"></div>
+                                <span class="font-bold">G (藍)</span>
+                            </div>
+                        </div>
+                        <p class="text-gray-600">當C大調穩固後，逐一加入新的和弦。</p>
+                        <ul class="list-disc pl-5 text-gray-600 space-y-2">
+                            <li><strong>順序：</strong>通常先加入C大調，接著是F大調（黃旗），或是G大調（藍旗）。一次只加一個新的。</li>
+                            <li><strong>分辨遊戲：</strong>隨機彈奏已學過的和弦，讓孩子舉起對應顏色的旗子。</li>
+                            <li><strong>重點：</strong>如果孩子選錯，不要說「錯」，而是直接彈奏正確的並展示旗子加深印象。</li>
+                        </ul>
+                    </div>
+                `
+            },
+            {
+                title: "第三階段：黑鍵與豐富化",
+                icon: "🌈",
+                colorClass: "bg-purple-500",
+                content: `
+                    <div class="space-y-4">
+                        <h3 class="text-xl font-bold text-gray-800">擴展至9個基本和弦</h3>
+                        <p class="text-gray-600">隨著白鍵和弦（C, Dm, Em, F, G, Am, Bdim）的熟悉，開始加入帶有黑鍵的和弦。</p>
+                        <div class="grid grid-cols-3 gap-2 text-sm text-center my-4">
+                            <div class="p-2 bg-green-100 rounded">Dm (綠)</div>
+                            <div class="p-2 bg-orange-100 rounded">Em (橘)</div>
+                            <div class="p-2 bg-purple-100 rounded">Am (紫)</div>
+                            <div class="p-2 bg-gray-200 rounded">Bdim (白)</div>
+                            <div class="p-2 bg-black text-white rounded">黑鍵和弦</div>
+                        </div>
+                        <p class="text-gray-600">
+                            此階段孩子腦中已經累積了多種「聲音色彩」。此時的他們雖然聽的是和弦，但大腦已經開始無意識地處理其中的組成音。
+                        </p>
+                    </div>
+                `
+            },
+            {
+                title: "第四階段：單音分化 (畢業考)",
+                icon: "🎵",
+                colorClass: "bg-gray-800",
+                content: `
+                    <div class="space-y-4">
+                        <h3 class="text-xl font-bold text-gray-800">從和弦到單音的自然過渡</h3>
+                        <p class="text-gray-600">這是江口式最神奇的一步。當孩子能精確分辨所有基本和弦後，開始進行「拆解」。</p>
+                        <ul class="list-disc pl-5 text-gray-600 space-y-2">
+                            <li><strong>測試：</strong>彈奏單音 "Do"，問孩子這是什麼顏色的旗子裡的聲音？</li>
+                            <li><strong>結果：</strong>受過訓練的孩子通常能直覺回答「紅色（C和弦）」。</li>
+                            <li><strong>轉化：</strong>告訴孩子「紅色旗子的主要聲音就是 Do」。</li>
+                        </ul>
+                        <div class="bg-blue-50 border-l-4 border-blue-500 p-4 mt-4">
+                            <p class="text-blue-700 font-bold">一旦成功完成單音分化，孩子即獲得了永久性的絕對音感能力。</p>
+                        </div>
+                    </div>
+                `
+            }
+        ];
+
+        // State Management
+        let currentStep = 0;
+
+        // Functions
+        function scrollToSection(id) {
+            document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function updateProcess(index) {
+            currentStep = index;
+            
+            // Update buttons styling
+            for (let i = 0; i < 4; i++) {
+                const btn = document.getElementById(`step-btn-${i}`);
+                if (i === index) {
+                    btn.className = "w-full text-left p-4 rounded-lg border-2 border-blue-600 bg-blue-50 transition-all flex items-center justify-between shadow-sm transform scale-[1.02]";
+                    btn.querySelector('span').classList.replace('text-gray-700', 'text-blue-900');
+                } else {
+                    btn.className = "w-full text-left p-4 rounded-lg border-2 border-gray-100 hover:bg-gray-50 transition-all flex items-center justify-between";
+                    btn.querySelector('span').classList.replace('text-blue-900', 'text-gray-700');
+                }
+            }
+
+            // Update Content
+            const contentDiv = document.getElementById('process-content');
+            contentDiv.innerHTML = processSteps[index].content;
+            
+            // Add subtle animation
+            contentDiv.classList.remove('opacity-100');
+            contentDiv.classList.add('opacity-0');
+            setTimeout(() => {
+                contentDiv.classList.remove('opacity-0');
+                contentDiv.classList.add('opacity-100', 'transition-opacity', 'duration-300');
+            }, 50);
+        }
+
+        function playChord(chord) {
+            const display = document.getElementById('flag-display');
+            const feedback = document.getElementById('feedback-text');
+            
+            let colorClass = '';
+            let text = '';
+            let notes = '';
+
+            switch(chord) {
+                case 'C':
+                    colorClass = 'flag-color-red';
+                    text = 'C Major - 紅色旗子';
+                    notes = 'Do - Mi - Sol';
+                    break;
+                case 'G':
+                    colorClass = 'flag-color-blue';
+                    text = 'G Major - 藍色旗子';
+                    notes = 'Sol - Si - Re';
+                    break;
+                case 'F':
+                    colorClass = 'flag-color-yellow';
+                    text = 'F Major - 黃色旗子';
+                    notes = 'Fa - La - Do';
+                    break;
+            }
+
+            // Reset animation
+            display.className = "w-48 h-48 rounded-full flex flex-col items-center justify-center transition-all duration-500 transform scale-0 " + colorClass;
+            
+            // Trigger animation
+            setTimeout(() => {
+                display.classList.remove('scale-0');
+                display.classList.add('scale-100', 'shadow-[0_0_30px_rgba(255,255,255,0.3)]');
+                display.innerHTML = `
+                    <span class="text-4xl filter drop-shadow-md">🚩</span>
+                    <span class="text-white font-bold mt-2 filter drop-shadow-md text-lg">${chord}</span>
+                `;
+                
+                feedback.innerHTML = `
+                    <div class="animate-pulse">
+                        <span class="block text-2xl text-white mb-1">${text}</span>
+                        <span class="block text-sm text-gray-300">組成音: ${notes}</span>
+                    </div>
+                `;
+            }, 50);
+        }
+
+        // Initialize Charts and Content
+        document.addEventListener('DOMContentLoaded', () => {
+            updateProcess(0);
+
+            // 1. Age Success Chart
+            const ctxAge = document.getElementById('ageSuccessChart').getContext('2d');
+            new Chart(ctxAge, {
+                type: 'line',
+                data: {
+                    labels: ['2歲', '3歲', '4歲', '5歲', '6歲', '7歲', '8歲', '9歲'],
+                    datasets: [{
+                        label: '絕對音感習得成功率 (%)',
+                        data: [95, 92, 85, 70, 40, 10, 2, 0],
+                        borderColor: '#3B82F6', // Tailwind blue-500
+                        backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                        borderWidth: 3,
+                        tension: 0.4,
+                        fill: true,
+                        pointBackgroundColor: '#fff',
+                        pointBorderColor: '#3B82F6',
+                        pointRadius: 5
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return `成功率: ${context.raw}% (臨界期效應)`;
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 100,
+                            title: { display: true, text: '成功率 %' }
+                        },
+                        x: {
+                            title: { display: true, text: '開始訓練年齡' }
+                        }
+                    }
+                }
+            });
+
+            // 2. Training Volume Chart (Donut)
+            const ctxVolume = document.getElementById('trainingVolumeChart').getContext('2d');
+            new Chart(ctxVolume, {
+                type: 'doughnut',
+                data: {
+                    labels: ['聆聽 (輸入)', '辨識 (輸出/測試)'],
+                    datasets: [{
+                        data: [80, 20],
+                        backgroundColor: [
+                            '#3B82F6', // Blue for Input
+                            '#EAB308'  // Yellow for Output
+                        ],
+                        borderWidth: 0,
+                        hoverOffset: 4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    cutout: '70%',
+                    plugins: {
+                        legend: { position: 'bottom' },
+                        title: {
+                            display: true,
+                            text: '理想的單次訓練比例分配',
+                            padding: { bottom: 20 }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
